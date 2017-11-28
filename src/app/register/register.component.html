@@ -1,0 +1,18 @@
+<div class="form-group">
+  <form class="example-form" (ngSubmit)="register()" #f="ngForm">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Username" [(ngModel)]="user.username" name="username" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" type="password"
+             [(ngModel)]="user.password" name="password" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="login-btn" [disabled]="!f.form.valid">Register</button>
+  </form>
+</div>
+
+<div class="reg">
+  <a routerLink="/login">Go Back</a>
+</div>
