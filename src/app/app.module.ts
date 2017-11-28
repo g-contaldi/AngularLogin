@@ -11,7 +11,7 @@ import {LoginService} from "./login.service";
 import {ProductService} from "./product.service";
 import {InterceptorService} from "./interceptor.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatButtonModule, MatDialogModule, MatInputModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {DialogComponent} from './dialog/dialog.component';
@@ -26,7 +26,7 @@ import {SharedService} from "./shared.service";
     ListProductComponent,
     DialogComponent
   ],
-  entryComponents:[
+  entryComponents: [
     DialogComponent
   ],
   imports: [
@@ -42,7 +42,11 @@ import {SharedService} from "./shared.service";
   providers: [
     LoginService,
     ProductService,
-    InterceptorService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
     AuthGuard,
     SharedService
   ],
