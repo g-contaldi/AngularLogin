@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../login.service";
 import {Location} from '@angular/common';
 import {Router} from "@angular/router";
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.user).subscribe(data => {
       console.log(data);
       localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('token', btoa(this.user.username + ':' + this.user.password));
       this._sharedService.emitChange('logged=true');
       this.router.navigate(['listproduct']);
     }, err => {

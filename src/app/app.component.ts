@@ -14,9 +14,23 @@ export class AppComponent {
   logged = false;
 
   constructor(private loginService: LoginService, private router: Router, private _sharedService: SharedService) {
-    let userLogged = localStorage.getItem('user');
-    if (userLogged != null)
-      this.logged = true;
+    let userLogged = JSON.parse(localStorage.getItem('user'));
+    if (userLogged != null) {
+      let token: string [] = atob(localStorage.getItem('token')).split(':');
+      let user = {username: token[0], password: token[1]};
+      this.loginService.login(user).subscribe(data => {
+        console.log('logged ' + data)
+        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('token', btoa(user.username + ':' + user.password));
+        this.logged = true;
+        this.router.navigate(['listproduct']);
+      }, err => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        this.logged = false;
+        this.router.navigate(['login']);
+      })
+    }
     _sharedService.changeEmitted$.subscribe(text => {
       console.log(text);
       this.logged = true;
@@ -27,10 +41,12 @@ export class AppComponent {
     this.loginService.logout().subscribe(data => {
       console.log('logged out. ' + data)
       localStorage.removeItem('user');
+      localStorage.removeItem('token');
       this.router.navigate(['login']);
     }, () => {
       console.log('logged out. ')
       localStorage.removeItem('user');
+      localStorage.removeItem('token');
       this.router.navigate(['login']);
       this.logged = false;
     })
