@@ -38,22 +38,15 @@ export class AppComponent {
   }
 
   logout() {
-    this.loginService.logout().subscribe(data => {
-      console.log('logged out. ' + data)
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
-      this.router.navigate(['login']);
-    }, () => {
-      console.log('logged out. ')
+    this.loginService.logout().subscribe(() => {
+      console.log('logged out.')
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       this.router.navigate(['login']);
       this.logged = false;
+    }, err => {
+      console.log(err)
     })
   }
 
-  isLogged(event) {
-    console.log(event);
-    this.logged = event;
-  }
 }
