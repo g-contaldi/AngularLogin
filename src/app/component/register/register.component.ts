@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoginService} from "../login.service";
+import {LoginService} from "../../provider/login.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material";
 import {DialogComponent} from "../dialog/dialog.component";

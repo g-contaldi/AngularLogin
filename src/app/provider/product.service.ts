@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BACKEND_URL} from "./util";
+import {BACKEND_URL} from "../util";
 
 @Injectable()
 export class ProductService {

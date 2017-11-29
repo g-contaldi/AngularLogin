@@ -4,19 +4,19 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
-import {ListProductComponent} from './list-product/list-product.component';
-import {LoginService} from "./login.service";
-import {ProductService} from "./product.service";
-import {InterceptorService} from "./interceptor.service";
+import {LoginComponent} from './component/login/login.component';
+import {RegisterComponent} from './component/register/register.component';
+import {ListProductComponent} from './component/list-product/list-product.component';
+import {LoginService} from "./provider/login.service";
+import {ProductService} from "./provider/product.service";
+import {InterceptorService} from "./provider/interceptor.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatButtonModule, MatDialogModule, MatInputModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
-import {DialogComponent} from './dialog/dialog.component';
-import {AuthGuard} from "./auth-guard.service";
-import {SharedService} from "./shared.service";
+import {DialogComponent} from './component/dialog/dialog.component';
+import {AuthGuard} from "./provider/auth-guard.service";
+import {SharedService} from "./provider/shared.service";
 
 @NgModule({
   declarations: [
